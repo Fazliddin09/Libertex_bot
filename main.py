@@ -1,17 +1,17 @@
+import asyncio
 from aiogram import Bot, Dispatcher, types
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
-from aiogram.utils import executor
 import os
 
 API_TOKEN = os.getenv("BOT_TOKEN")
 
 bot = Bot(token=API_TOKEN)
-dp = Dispatcher(bot)
+dp = Dispatcher()
 
 link = "https://app.lbxinfo.org/goto/raf2?rid=16981019"
 promo = "GIFT"
 
-@dp.message_handler(commands=['start'])
+@dp.message(commands=['start'])
 async def send_welcome(message: types.Message):
     kb = ReplyKeyboardMarkup(resize_keyboard=True)
     kb.add(KeyboardButton("Как получить акции?"))
@@ -20,7 +20,7 @@ async def send_welcome(message: types.Message):
         reply_markup=kb
     )
 
-@dp.message_handler(lambda message: message.text == "Как получить акции?")
+@dp.message(lambda message: message.text == "Как получить акции?")
 async def explain_steps(message: types.Message):
     await message.answer(
         f"Все просто:\n"
@@ -33,5 +33,8 @@ async def explain_steps(message: types.Message):
         parse_mode="Markdown"
     )
 
+async def main():
+    await dp.start_polling(bot)
+
 if __name__ == '__main__':
-    executor.start_polling(dp, skip_updates=True)
+    asyncio.run(main())
