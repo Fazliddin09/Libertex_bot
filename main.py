@@ -1,17 +1,12 @@
 import os
+import asyncio
 from aiogram import Bot, Dispatcher, types
 from aiogram.enums import ParseMode
 from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton
 from aiogram.filters import Command
-from aiogram.client.default import DefaultBotProperties
-import os
 
-bot = Bot( token=os.getenv("BOT_TOKEN")
-
-bot = Bot(
-    token=API_TOKEN,
-    default=DefaultBotProperties(parse_mode=ParseMode.MARKDOWN)
-)
+# Инициализация бота
+bot = Bot(token=os.getenv("BOT_TOKEN"), parse_mode=ParseMode.MARKDOWN)
 dp = Dispatcher()
 
 link = "https://app.lbxinfo.org/goto/raf2?rid=16981019"
@@ -41,5 +36,5 @@ async def explain_steps(message: Message):
 async def main():
     await dp.start_polling(bot)
 
-if __name__ == '__main__':
+if name == 'main':
     asyncio.run(main())
