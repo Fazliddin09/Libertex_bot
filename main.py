@@ -1,4 +1,4 @@
-import asyncio
+import os
 from aiogram import Bot, Dispatcher, types
 from aiogram.enums import ParseMode
 from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton
@@ -6,7 +6,7 @@ from aiogram.filters import Command
 from aiogram.client.default import DefaultBotProperties
 import os
 
-API_TOKEN = os.getenv("BOT_TOKEN")
+bot = Bot( token=os.getenv("BOT_TOKEN")
 
 bot = Bot(
     token=API_TOKEN,
