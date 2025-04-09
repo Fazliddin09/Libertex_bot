@@ -7,7 +7,7 @@ from aiogram.filters import Command
 from aiogram.client.default import DefaultBotProperties
 
 # Инициализация бота с использованием DefaultBotProperties
-bot = Bot(token=os.getenv("BOT_TOKEN"), default=DefaultBotProperties(parse_mode=ParseMode.MARKDOWN))
+bot = print("TOKEN:", os.getenv("BOT_TOKEN")), default=DefaultBotProperties(parse_mode=ParseMode.MARKDOWN))
 dp = Dispatcher()
 
 link = "https://app.lbxinfo.org/goto/raf2?rid=16981019"
