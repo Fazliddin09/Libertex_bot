@@ -1,15 +1,16 @@
 import os
 import asyncio
-from aiogram import Bot, Dispatcher, types
+from aiogram import Bot, Dispatcher
 from aiogram.enums import ParseMode
 from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton
 from aiogram.filters import Command
 from aiogram.client.default import DefaultBotProperties
 
-# Инициализация бота с использованием DefaultBotProperties
-bot = print("TOKEN:", os.getenv("BOT_TOKEN")), default=DefaultBotProperties(parse_mode=ParseMode.MARKDOWN))
-dp = Dispatcher()
+token = os.getenv("BOT_TOKEN")
+print("TOKEN:", token)
 
+bot = Bot(token=token, default=DefaultBotProperties(parse_mode=ParseMode.MARKDOWN))
+dp = Dispatcher()
 link = "https://app.lbxinfo.org/goto/raf2?rid=16981019"
 promo = "GIFT"
 
