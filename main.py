@@ -1,23 +1,29 @@
 import os
 import asyncio
-from aiogram import Bot, Dispatcher
+from aiogram import Bot, Dispatcher, types
 from aiogram.enums import ParseMode
 from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton
 from aiogram.filters import Command
 from aiogram.client.default import DefaultBotProperties
 
-token = os.getenv("BOT_TOKEN")
-print("TOKEN:", token)
-
-bot = Bot(token=token, default=DefaultBotProperties(parse_mode=ParseMode.MARKDOWN))
+# Инициализация бота с новым способом установки parse_mode
+bot = Bot(
+    token=os.getenv("BOT_TOKEN"),
+    default=DefaultBotProperties(parse_mode=ParseMode.MARKDOWN)
+)
 dp = Dispatcher()
+
+# Партнёрская ссылка и промокод
 link = "https://app.lbxinfo.org/goto/raf2?rid=16981019"
 promo = "GIFT"
 
 @dp.message(Command("start"))
 async def send_welcome(message: Message):
-    kb = ReplyKeyboardMarkup(resize_keyboard=True)
-    kb.add(KeyboardButton("Как получить акции?"))
+    # Создание клавиатуры
+    kb = ReplyKeyboardMarkup(
+        keyboard=[[KeyboardButton(text="Как получить акции?")]],
+        resize_keyboard=True
+    )
     await message.answer(
         "Привет! Я помогу тебе получить акции Tesla, Google и других компаний до $200 в подарок!",
         reply_markup=kb
@@ -38,5 +44,5 @@ async def explain_steps(message: Message):
 async def main():
     await dp.start_polling(bot)
 
-if __name__ == '__main__':
+if name == "main":
     asyncio.run(main())
