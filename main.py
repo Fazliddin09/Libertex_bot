@@ -4,9 +4,10 @@ from aiogram import Bot, Dispatcher, types
 from aiogram.enums import ParseMode
 from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton
 from aiogram.filters import Command
+from aiogram.client.default import DefaultBotProperties
 
-# Инициализация бота
-bot = Bot(token=os.getenv("BOT_TOKEN"), parse_mode=ParseMode.MARKDOWN)
+# Инициализация бота с использованием DefaultBotProperties
+bot = Bot(token=os.getenv("BOT_TOKEN"), default=DefaultBotProperties(parse_mode=ParseMode.MARKDOWN))
 dp = Dispatcher()
 
 link = "https://app.lbxinfo.org/goto/raf2?rid=16981019"
